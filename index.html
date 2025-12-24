@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kelas 7F</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .menu a {
+            background: #2196F3;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .jadwal {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .jadwal th, .jadwal td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .jadwal th {
+            background: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>KELAS 7F</h1>
+        <p>SMP NEGERI 1 CONTOH</p>
+    </div>
+
+    <div class="menu">
+        <a href="#info">INFO</a>
+        <a href="#jadwal">JADWAL</a>
+        <a href="#siswa">SISWA</a>
+        <a href="#foto">FOTO</a>
+    </div>
+
+    <div id="info" class="card">
+        <h2>INFO KELAS</h2>
+        <p><b>Wali Kelas:</b> Ibu Sari Dewi</p>
+        <p><b>Ketua Kelas:</b> Andi Pratama</p>
+        <p><b>Jumlah Siswa:</b> 32 orang</p>
+        <p><b>Motto:</b> "Rajin Belajar, Raih Prestasi"</p>
+    </div>
+
+    <div id="jadwal" class="card">
+        <h2>JADWAL PELAJARAN</h2>
+        <table class="jadwal">
+            <tr><th>HARI</th><th>PELAJARAN</th></tr>
+            <tr><td>Senin</td><td>Matematika, IPA, IPS</td></tr>
+            <tr><td>Selasa</td><td>Bahasa Indonesia, PPKN</td></tr>
+            <tr><td>Rabu</td><td>Bahasa Inggris, PJOK</td></tr>
+            <tr><td>Kamis</td><td>Seni Budaya, Prakarya</td></tr>
+            <tr><td>Jumat</td><td>Agama, BK</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <p>© 2024 Kelas 7F</p>
+    </div>
+</body>
+</html>

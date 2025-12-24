@@ -1,91 +1,580 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Kelas 7F</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f0f8ff;
-            padding: 20px;
+<!DOCTYPE html> <html> <head> <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, 
+    initial-scale=1.0"> <title>KELAS 7F - SMPN 1 
+    WEDI</title> <style>
+        * { margin: 0; padding: 0; box-sizing: 
+            border-box; font-family: 'Segoe UI', 
+            Arial, sans-serif;
+        }
+        
+        body { background: linear-gradient(135deg, 
+            #1a2980, #26d0ce);
+            color: white; min-height: 100vh;
+        }
+        
+        .container { max-width: 1000px; margin: 0 
+            auto; padding: 20px;
+        }
+        
+        /* HEADER */ .header { text-align: center; 
+            padding: 30px 20px; background: rgba(0, 0, 
+            0, 0.7); border-radius: 20px; 
+            margin-bottom: 30px; border: 3px solid 
+            #00ff88;
+            box-shadow: 0 0 20px #00ff88;
+        }
+        
+        .school-name { color: #00ff88; font-size: 
+            1.8em; margin-bottom: 10px; text-shadow: 0 
+            0 10px #00ff88;
+        }
+        
+        .class-name { font-size: 3.5em; color: white; 
+            margin: 10px 0; background: 
+            linear-gradient(45deg, #ff0080, #00ff88); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-weight: bold;
+        }
+        
+        .creator { color: #00ffff; font-size: 1.3em; 
+            margin-top: 10px; font-weight: bold;
+        }
+        
+        .tagline { color: #ffcc00; font-size: 1.2em; 
+            margin-top: 5px;
+        }
+        
+        /* MENU */ .menu { display: flex; 
+            justify-content: center; flex-wrap: wrap; 
+            gap: 10px; margin: 20px 0;
+        }
+        
+        .menu-btn { background: rgba(0, 0, 0, 0.8); 
+            color: white; padding: 12px 25px; border: 
+            none; border-radius: 50px; font-size: 1em; 
+            cursor: pointer; transition: all 0.3s; 
+            border: 2px solid transparent; 
+            font-weight: bold;
+        }
+        
+        .menu-btn:hover { background: #00ff88; color: 
+            black; transform: translateY(-3px); 
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 
+            0.4);
+        }
+        
+        /* CONTENT CARDS */ .content { display: none; 
+            background: rgba(0, 0, 0, 0.8); 
+            border-radius: 20px; padding: 30px; 
+            margin-top: 20px; border: 2px solid 
+            #ff0080;
+            box-shadow: 0 0 20px rgba(255, 0, 128, 
+            0.3);
+        }
+        
+        .active-content { display: block; animation: 
+            fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; 
+            transform: translateY(20px); } to { 
+            opacity: 1; transform: translateY(0); }
+        }
+        
+        /* INFO CARD */ .info-card { background: 
+            rgba(255, 255, 255, 0.1); padding: 20px; 
+            border-radius: 15px; margin: 15px 0; 
+            border-left: 5px solid #00ff88;
+        }
+        
+        .info-item { display: flex; align-items: 
+            center; margin: 15px 0; padding: 10px; 
+            background: rgba(0, 0, 0, 0.3); 
+            border-radius: 10px;
+        }
+        
+        .icon { font-size: 2em; margin-right: 15px; 
+            color: #00ff88; min-width: 50px; 
             text-align: center;
         }
-        .header {
-            background: #4CAF50;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
+        
+        /* MOTIVATION */ .motivation-box { background: 
+            rgba(255, 255, 0, 0.15); padding: 25px; 
+            border-radius: 15px; margin: 20px 0; 
+            border: 2px solid #ffcc00; font-size: 
+            1.1em; line-height: 1.8;
+        }
+        
+        .motivation-title { color: #ffcc00; 
+            text-align: center; font-size: 1.8em; 
             margin-bottom: 20px;
         }
-        .card {
-            background: white;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: left;
+        
+        /* SCHEDULE */ .schedule-table { width: 100%; 
+            border-collapse: collapse; margin-top: 
+            20px;
         }
-        .menu {
+        
+        .schedule-table th { background: rgba(255, 0, 
+            128, 0.7); padding: 15px; text-align: 
+            center; font-size: 1.1em;
+        }
+        
+        .schedule-table td { padding: 15px; 
+            text-align: center; border-bottom: 1px 
+            solid rgba(255, 255, 255, 0.1); font-size: 
+            1.1em;
+        }
+        
+        .libur { color: #ff6666; font-weight: bold; 
+            font-size: 1.2em;
+        }
+        
+        /* PHOTOS */ .photo-grid { display: grid;
+            grid-template-col
+umns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .photo-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 2px dashed #00ffff;
+        }
+        
+        .photo-item:hover {
+            transform: scale(1.05);
+            background: rgba(0, 255, 136, 0.2);
+        }
+        
+        .photo-icon {
+            font-size: 3em;
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+        
+        /* ANNOUNCEMENTS */
+        .announcement-item {
+            background: rgba(0, 100, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #0066ff;
+        }
+        
+        .announcement-title {
+            color: #00ccff;
+            font-size: 1.3em;
+            margin-bottom: 10px;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
-        .menu a {
-            background: #2196F3;
-            color: white;
-            padding: 10px 15px;
-            margin: 5px;
-            border-radius: 5px;
-            text-decoration: none;
+        
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            border-top: 3px solid #ff0080;
         }
-        .jadwal {
-            width: 100%;
-            border-collapse: collapse;
+        
+        .creator-sign {
+            color: #00ff88;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 10px;
         }
-        .jadwal th, .jadwal td {
-            border: 1px solid #ddd;
-            padding: 8px;
+        
+        .rocket {
+            font-size: 1.5em;
+            animation: bounce 1s infinite;
+            display: inline-block;
         }
-        .jadwal th {
-            background: #4CAF50;
-            color: white;
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .class-name {
+                font-size: 2.5em;
+            }
+            
+            .menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .menu-btn {
+                width: 90%;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .class-name {
+                font-size: 2em;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="header">
-        <h1>KELAS 7F</h1>
-        <p>SMP NEGERI 1 CONTOH</p>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="school-name">SMP NEGERI 1 WEDI</div>
+            <h1 class="class-name">KELAS 7F</h1>
+            <div class="creator">BY: NIZAM ANTI GEDOR🚀🚀</div>
+            <div class="tagline">Kelas Paling Keren & Solid!</div>
+        </div>
+        
+        <!-- MENU -->
+        <div class="menu">
+            <button class="menu-btn" onclick="showContent('info')">
+                <i class="fas fa-info-circle"></i> INFO KELAS
+            </button>
+            <button class="menu-btn" onclick="showContent('motivation')">
+                <i class="fas fa-star"></i> MOTIVASI
+            </button>
+            <button class="menu-btn" onclick="showContent('schedule')">
+                <i class="fas fa-calendar"></i> JADWAL
+            </button>
+            <button class="menu-btn" onclick="showContent('photos')">
+                <i class="fas fa-camera"></i> FOTO
+            </button>
+            <button class="menu-btn" onclick="showContent('announcements')">
+                <i class="fas fa-bullhorn"></i> PENGUMUMAN
+            </button>
+        </div>
+        
+        <!-- INFO KELAS -->
+        <div id="info" class="content active-content">
+            <h2><i class="fas fa-users"></i> INFORMASI KELAS 7F</h2>
+            
+            <div class="info-card">
+                <div class="info-item">
+                    <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div>
+                        <h3>WALI KELAS</h3>
+                        <p style="font-size: 1.3em; color: #00ff88;">BU NINDI ⚡</p>
+                        <p>Guru paling kece dan pengertian!</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon"><i class="fas fa-crown"></i></div>
+                    <div>
+                        <h3>KETUA KELAS</h3>
+                        <p style="font-size: 1.3em; color: #00ffff;">RESTU 🚀</p>
+                        <p>Pemimpin yang bertanggung jawab</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon"><i class="fas fa-user-friends"></i></div>
+                    <div>
+                        <h3>WAKIL KETUA</h3>
+                        <p style="font-size: 1.3em; color: #ffcc00;">OLIP 😏</p>
+                        <p>Support system yang solid</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                    <div>
+                        <h3>JUMLAH SISWA</h3>
+                        <p style="font-size: 1.3em; color: #ff66cc;">32 SISWA ✨</p>
+                        <p>16 Laki-laki & 16 Perempuan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MOTIVASI -->
+        <div id="motivation" class="content">
+            <h2><i class="fas fa-bullseye"></i> MOTIVASI UNTUK KELAS 7F</h2>
+            
+            <div class="motivation-box">
+                <div class="motivation-title">🌟 PESAN & MOTIVASI UNTUK SISWA KELAS 7F 🌟</div>
+                
+                <p>Kelas 7F adalah kelas yang penuh potensi. Setiap siswa memiliki kemampuan, kelebihan, dan bakat yang berbeda-beda. Jangan pernah merasa minder atau kalah sebelum mencoba, karena semua orang bisa berkembang jika mau belajar dan berusaha.</p>
+                
+                <p style="margin-top: 15px;">Sebagai siswa kelas 7F, tugas utama kalian adalah belajar dengan sungguh-sungguh, menghormati guru, serta saling menghargai antar teman. Kedisiplinan, kejujuran, dan tanggung jawab adalah kunci utama untuk meraih prestasi, baik di sekolah maupun di masa depan.</p>
+                
+                <p style="margin-top: 15px; color: #ffcc00; font-weight: bold;">Ingatlah bahwa kesalahan bukanlah kegagalan, tetapi bagian dari proses belajar. Jangan takut bertanya, jangan malu mencoba, dan jangan mudah menyerah. Orang yang berhasil bukan yang paling pintar, tetapi yang paling gigih dan konsisten.</p>
+                
+                <div style="background: rgba(0, 255, 136, 0.2); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h3 style="color: #00ff88; text-align: center;">Mari bersama-sama menjaga nama baik kelas 7F dengan:</h3>
+                    <ul style="margin-top: 15px; padding-left: 20px;">
+                        <li>Datang tepat waktu</li>
+                        <li>Mengerjakan tugas dengan jujur</li>
+                        <li>Menjaga kebersihan dan kekompakan kelas</li>
+                        <li>Saling membantu dan menyemangati</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 20px; text-align: center; font-size: 1.2em; color: #00ccff;">
+                    Dengan kebersamaan dan semangat, kelas 7F bisa menjadi kelas yang unggul dalam prestasi, baik dalam sikap, akademik, maupun kebersamaan.
+                </p>
+                
+                <p style="margin-top: 20px; text-align: center; font-size: 1.3em; color: #ff66cc; font-weight: bold;">
+                    ✨ Tetap semangat, tetap rendah hati, dan terus berusaha.<br>
+                    Kelas 7F bisa, kelas 7F hebat! ✨
+                </p>
+            </div>
+        </div>
+        
+        <!-- JADWAL -->
+        <div id="schedule" class="content">
+            <h2><i class="fas fa-calendar-alt"></i> JADWAL KELAS 7F</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #ffcc00;">
+                ⚠️ Catatan: Jadwal berikut adalah contoh format. Silakan hubungi wali kelas untuk jadwal sebenarnya.
+            </p>
+            
+            <table class="schedule-table">
+                <tr>
+                    <th>HARI</th>
+                    <th>KETERANGAN</th>
+                    <th>STATUS</th>
+                </tr>
+                <tr>
+                    <td>SENIN</td>
+                    <td>Hari pertama semangat!</td>
+                    <td class="libur">LIBUR ✨</td>
+                </tr>
+                <tr>
+                    <td>SELASA</td>
+                    <td>Belajar dengan gembira</td>
+                    <td class="libur">LIBUR ✨</td>
+                </tr>
+                <tr>
+                    <td>RABU</td>
+                    <td>Hari pertengahan minggu</td>
+                    <td class="libur">LIBUR ✨</td>
+                </tr>
+                <tr>
+                    <td>KAMIS</td>
+                    <td>Menyambung ilmu</td>
+                    <td class="libur">LIBUR ✨</td>
+                </tr>
+                <tr>
+                    <td>JUMAT</td>
+                    <td>Hari yang berkah</td>
+                    <td class="libur">LIBUR ✨</td>
+                </tr>
+                <tr>
+                    <td>SABTU</td>
+                    <td>Akhir pekan menyenangkan</td>
+                    <td class="libur">LIBUR ✨</td>
+                </tr>
+                <tr>
+                    <td>MINGGU</td>
+                    <td>Hari keluarga</td>
+                    <td class="libur">LIBUR ✨</td>
+                </tr>
+            </table>
+            
+            <div style="background: rgba(255, 100, 100, 0.2); padding: 20px; border-radius: 10px; margin-top: 30px; text-align: center;">
+                <h3 style="color: #ff6666;"><i class="fas fa-exclamation-triangle"></i> PERHATIAN!</h3>
+                <p>Jadwal di atas hanya contoh. Jadwal sebenarnya akan diumumkan oleh wali kelas.</p>
+                <p style="margin-top: 10px; color: #ffcc00;">Selalu cek pengumuman terbaru!</p>
+            </div>
+        </div>
+        
+        <!-- FOTO -->
+        <div id="photos" class="content">
+            <h2><i class="fas fa-images"></i> GALERI FOTO KELAS 7F</h2>
+            <p style="text-align: center; margin-bottom: 20px;">
+                Kumpulan momen berharga kelas 7F SMPN 1 WEDI
+            </p>
+            
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <div class="photo-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Foto Kelas</h3>
+                    <p>Foto bersama seluruh siswa 7F</p>
+                </div>
+                
+                <div class="photo-item">
+                    <div class="photo-icon"><i class="fas fa-chalkboard"></i></div>
+                    <h3>Kegiatan Belajar</h3>
+                    <p>Momen seru saat belajar</p>
+                </div>
+                
+                <div class="photo-item">
+                    <div class="photo-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>Prestasi</h3>
+                    <p>Penghargaan yang diraih</p>
+                </div>
+                
+                <div class="photo-item">
+                    <div class="photo-icon"><i class="fas fa-tree"></i></div>
+                    <h3>Outdoor</h3>
+                    <p>Kegiatan di luar kelas</p>
+                </div>
+                
+                <div class="photo-item">
+                    <div class="photo-icon"><i class="fas fa-birthday-cake"></i></div>
+                    <h3>Ulang Tahun</h3>
+                    <p>Perayaan hari spesial</p>
+                </div>
+                
+                <div class="photo-item">
+                    <div class="photo-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>Fun Time</h3>
+                    <p>Momen seru bersama</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="menu-btn" onclick="alert('Untuk upload foto, hubungi Nizam atau ketua kelas!')">
+                    <i class="fas fa-upload"></i> UPLOAD FOTO BARU
+                </button>
+            </div>
+        </div>
+        
+        <!-- PENGUMUMAN -->
+        <div id="announcements" class="content">
+            <h2><i class="fas fa-bullhorn"></i> PENGUMUMAN TERBARU</h2>
+            
+            <div class="announcement-item">
+                <div class="announcement-title">
+                    <i class="fas fa-calendar-check"></i> UJIAN TENGAH SEMESTER
+                </div>
+                <p><strong>Tanggal:</strong> Akan diumumkan kemudian</p>
+                <p><strong>Persiapan:</strong> Mulai belajar dari sekarang!</p>
+                <p style="color: #ffcc00; margin-top: 10px;"><i class="fas fa-lightbulb"></i> Siapkan diri dengan baik!</p>
+            </div>
+            
+            <div class="announcement-item">
+                <div class="announcement-title">
+                    <i class="fas fa-users"></i> RAPAT ORANG TUA
+                </div>
+                <p><strong>Hari/Tanggal:</strong> Akan diinformasikan</p>
+                <p><strong>Tempat:</strong> Kelas 7F</p>
+                <p style="color: #ffcc00; margin-top: 10px;"><i class="fas fa-info-circle"></i> Mohon kehadiran orang tua/wali</p>
+            </div>
+            
+            <div class="announcement-item">
+                <div class="announcement-title">
+                    <i class="fas fa-birthday-cake"></i> ULANG TAHAN BULAN INI
+                </div>
+                <p><strong>Nama:</strong> Akan diumumkan</p>
+                <p><strong>Selamat ulang tahun!</strong> Semoga sukses selalu</p>
+                <p style="color: #ff66cc; margin-top: 10px;"><i class="fas fa-gift"></i> Doa terbaik untuk kalian!</p>
+            </div>
+            
+            <div class="announcement-item">
+                <div class="announcement-title">
+                    <i class="fas fa-exclamation-triangle"></i> PERATURAN KELAS
+                </div>
+                <p>1. Datang tepat waktu</p>
+                <p>2. Seragam lengkap dan rapi</p>
+                <p>3. Jaga kebersihan kelas</p>
+                <p>4. Hormati guru dan teman</p>
+                <p style="color: #00ff88; margin-top: 10px;"><i class="fas fa-check-circle"></i> Patuhi aturan untuk kebaikan bersama</p>
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3 style="color: #00ff88;">WEBSITE RESMI KELAS 7F</h3>
+            <p>SMP NEGERI 1 WEDI</p>
+            <p>Tahun Ajaran 2024/2025</p>
+            
+            <div style="margin: 20px 0; padding: 15px; background: rgba(0, 0, 0, 0.5); border-radius: 10px;">
+                <p><i class="fas fa-envelope"></i> Email: hubungi wali kelas</p>
+                <p><i class="fas fa-phone"></i> Contact: melalui grup WhatsApp kelas</p>
+            </div>
+            
+            <div class="creator-sign">
+                <i class="fas fa-rocket rocket"></i>
+                DIBUAT OLEH: NIZAM 7F SMP 1 WEDI
+                <i class="fas fa-rocket rocket"></i>
+            </div>
+            
+            <p style="margin-top: 15px; color: #00ffff;">
+                ANTI GEDOR! 🚀🚀 | KELAS PALING SOLID!
+            </p>
+        </div>
     </div>
-
-    <div class="menu">
-        <a href="#info">INFO</a>
-        <a href="#jadwal">JADWAL</a>
-        <a href="#siswa">SISWA</a>
-        <a href="#foto">FOTO</a>
-    </div>
-
-    <div id="info" class="card">
-        <h2>INFO KELAS</h2>
-        <p><b>Wali Kelas:</b> Ibu Sari Dewi</p>
-        <p><b>Ketua Kelas:</b> Andi Pratama</p>
-        <p><b>Jumlah Siswa:</b> 32 orang</p>
-        <p><b>Motto:</b> "Rajin Belajar, Raih Prestasi"</p>
-    </div>
-
-    <div id="jadwal" class="card">
-        <h2>JADWAL PELAJARAN</h2>
-        <table class="jadwal">
-            <tr><th>HARI</th><th>PELAJARAN</th></tr>
-            <tr><td>Senin</td><td>Matematika, IPA, IPS</td></tr>
-            <tr><td>Selasa</td><td>Bahasa Indonesia, PPKN</td></tr>
-            <tr><td>Rabu</td><td>Bahasa Inggris, PJOK</td></tr>
-            <tr><td>Kamis</td><td>Seni Budaya, Prakarya</td></tr>
-            <tr><td>Jumat</td><td>Agama, BK</td></tr>
-        </table>
-    </div>
-
-    <div class="card">
-        <p>© 2024 Kelas 7F</p>
-    </div>
+    
+    <script>
+        // Fungsi untuk menampilkan konten yang dipilih
+        function showContent(contentId) {
+            // Sembunyikan semua konten
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.classList.remove('active-content');
+            });
+            
+            // Tampilkan konten yang dipilih
+            document.getElementById(contentId).classList.add('active-content');
+            
+            // Ubah warna tombol yang aktif
+            const buttons = document.querySelectorAll('.menu-btn');
+            buttons.forEach(btn => {
+                btn.style.background = 'rgba(0, 0, 0, 0.8)';
+                btn.style.color = 'white';
+                btn.style.border = '2px solid transparent';
+            });
+            
+            // Highlight tombol yang aktif
+            event.target.style.background = '#00ff88';
+            event.target.style.color = 'black';
+            event.target.style.border = '2px solid #00ff88';
+        }
+        
+        // Animasi untuk foto
+        document.querySelectorAll('.photo-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) rotate(2deg)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+        
+        // Alert saat pertama buka website
+        window.onload = function() {
+            setTimeout(() => {
+                alert("Selamat datang di Website Kelas 7F SMPN 1 WEDI! 🚀\n\nDibuat dengan ❤️ oleh Nizam");
+            }, 1000);
+        };
+        
+        // Random background color untuk header
+        const colors = ['#00ff88', '#00ffff', '#ff66cc', '#ffcc00', '#ff6666'];
+        setInterval(() => {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.querySelector('.header').style.borderColor = randomColor;
+            document.querySelector('.header').style.boxShadow = `0 0 20px ${randomColor}`;
+        }, 3000);
+    </script>
 </body>
 </html>
+
